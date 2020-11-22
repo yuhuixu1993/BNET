@@ -1,13 +1,49 @@
+import functools
 import torch.nn as nn
 import torch.utils.checkpoint as cp
-from mmcv.cnn import (build_conv_layer, build_norm_layer, build_plugin_layer,
+from mmcv.cnn import (build_conv_layer, build_plugin_layer,
                       constant_init, kaiming_init)
+from mmcv.cnn import build_norm_layer as _build_norm_layer
 from mmcv.runner import load_checkpoint
 from torch.nn.modules.batchnorm import _BatchNorm
 
 from mmdet.utils import get_root_logger
 from ..builder import BACKBONES
 from ..utils import ResLayer
+
+
+class BNet2d(nn.BatchNorm2d):
+
+    def __init__(self, num_features, *args, kernel_size=3, **kwargs):
+        super(BNet2d, self).__init__(
+            num_features, *args, affine=False, **kwargs)
+        self.bnconv = nn.Conv2d(
+            num_features,
+            num_features,
+            kernel_size,
+            padding=(kernel_size - 1) // 2,
+            groups=num_features,
+            bias=True)
+
+    def forward(self, x):
+        return self.bnconv(super(BNet2d, self).forward(x))
+
+
+def build_norm_layer(cfg, num_features, postfix=''):
+    assert isinstance(cfg, dict) and 'type' in cfg
+    cfg_ = cfg.copy()
+    layer_type = cfg_.pop('type')
+    if layer_type == 'BNet':
+        abbr, norm_layer = 'bnet', BNet2d
+        name = abbr + str(postfix)
+        requires_grad = cfg_.pop('requires_grad', True)
+        cfg_.setdefault('eps', 1e-5)
+        layer = norm_layer(num_features, **cfg_)
+        for param in layer.parameters():
+            param.requires_grad = requires_grad
+        return name, layer
+    else:
+        return _build_norm_layer(cfg, num_features, postfix=postfix)
 
 
 class BasicBlock(nn.Module):
@@ -106,7 +142,9 @@ class Bottleneck(nn.Module):
                  conv_cfg=None,
                  norm_cfg=dict(type='BN'),
                  dcn=None,
-                 plugins=None):
+                 plugins=None,
+                 use_bnconv=False,
+                 kernel_size_bn=3):
         """Bottleneck block for ResNet.
 
         If style is "pytorch", the stride-two layer is the 3x3 conv layer, if
@@ -132,6 +170,8 @@ class Bottleneck(nn.Module):
         self.with_dcn = dcn is not None
         self.plugins = plugins
         self.with_plugins = plugins is not None
+        self.use_bnconv = use_bnconv
+        self.kernel_size_bn = kernel_size_bn
 
         if self.with_plugins:
             # collect plugins for conv1/conv2/conv3
@@ -157,8 +197,20 @@ class Bottleneck(nn.Module):
 
         self.norm1_name, norm1 = build_norm_layer(norm_cfg, planes, postfix=1)
         self.norm2_name, norm2 = build_norm_layer(norm_cfg, planes, postfix=2)
-        self.norm3_name, norm3 = build_norm_layer(
-            norm_cfg, planes * self.expansion, postfix=3)
+        if self.use_bnconv:
+            _norm_cfg = norm_cfg.copy()
+            if 'affine' in _norm_cfg:
+                affine = _norm_cfg.pop('affine')
+                assert affine
+            _norm_cfg.update({
+                'type': 'BNet',
+                'kernel_size': self.kernel_size_bn
+            })
+            self.norm3_name, norm3 = build_norm_layer(
+                _norm_cfg, planes * self.expansion, postfix=3)
+        else:
+            self.norm3_name, norm3 = build_norm_layer(
+                norm_cfg, planes * self.expansion, postfix=3)
 
         self.conv1 = build_conv_layer(
             conv_cfg,
@@ -381,7 +433,9 @@ class ResNet(nn.Module):
                  stage_with_dcn=(False, False, False, False),
                  plugins=None,
                  with_cp=False,
-                 zero_init_residual=True):
+                 zero_init_residual=True,
+                 use_bnconv=False,
+                 kernel_size_bn=3):
         super(ResNet, self).__init__()
         if depth not in self.arch_settings:
             raise KeyError(f'invalid depth {depth} for resnet')
@@ -414,6 +468,15 @@ class ResNet(nn.Module):
         self.block, stage_blocks = self.arch_settings[depth]
         self.stage_blocks = stage_blocks[:num_stages]
         self.inplanes = stem_channels
+
+        self.use_bnconv = use_bnconv
+        self.kernel_size_bn = kernel_size_bn
+        new_block = functools.partial(
+            self.block,
+            use_bnconv=self.use_bnconv,
+            kernel_size_bn=self.kernel_size_bn)
+        new_block.expansion = self.block.expansion
+        self.block = new_block
 
         self._make_stem_layer(in_channels, stem_channels)
 
