@@ -5,6 +5,7 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 <div align="center">
   <img src="BNET.png" width="600"/>
 </div>
+
 ## Update
 - 11.27.2020: Pretrained models are released.
 - 11.26.2020: The code of Image Classification and Object Detection are released.
