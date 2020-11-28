@@ -23,6 +23,9 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 |    Faster-R-101-FPN     |  BNET-5  |   1x    |    12.2    | 41.8   | [model](https://drive.google.com/file/d/1CEdiDMTWAnh2pEFRN3y57WE--uzGu8MC/view?usp=sharing) |
 |    Faster-R-101-FPN     |  BNET-5  |   3x    |    12.2    | 43.1   | [model](https://drive.google.com/file/d/1zdSkCQ9DbtCkP0MHlNDbx0VLaxmNnpM-/view?usp=sharing) |
 
+|    Backbone     |  BN  | Lr schd | Inf time (fps) | box AP | Download |
+| :-------------: | :-----: | :-----: | :------------: | :----: | :------: |
+|    Retina-R-101-FPN     |  BNET-5  |   1x    |    11.4    | 40.7   | [model](https://drive.google.com/file/d/1t9cSGdQ8LStRVYWZ1U92l8ewrRJmHt7x/view?usp=sharing) |
 
 
 |    Backbone     |  BN  | Lr schd |  box AP | mask AP | Download |
