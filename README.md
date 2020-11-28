@@ -34,3 +34,18 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 |    Mask-R-50-FPN     |  BNET-5  |   1x    |    40.8    | 36.7   | [model](https://drive.google.com/file/d/1MzL6njoaQeDar9hT8NiQ80Ql9b2pBIKK/view?usp=sharing) |
 |    Mask-R-101-FPN     |  BNET-3  |   1x    |   42.2    | 37.8   | [model](https://drive.google.com/file/d/16bcWQVGKat9IIrj3odQiKM2JjSOlglET/view?usp=sharing) |
 |    Mask-R-101-FPN     |  BNET-5  |   1x    |   42.5    | 37.9   | [model](https://drive.google.com/file/d/1jpGeV48jhLLjJSPPLniVvaylz_IxsNBF/view?usp=sharing) |
+
+## Citation
+
+If you use this toolbox or benchmark in your research, please cite this project.
+
+```
+@article{BNET,
+  title   = {Batch Normalization with Enhanced Linear Normalization},
+  author  = {Xu, Yuhui and Xie, Lingxi and Xie, Cihang and Mei, Jieru and
+             Qiao, Siyuan and Wei, Shen and Xiong, Hongkai and Alan, Yuille},
+  journal= {wait},
+  year={2020}
+}
+```
+
