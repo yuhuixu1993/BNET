@@ -18,7 +18,7 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 ## Model Zoo
 
 |    Backbone     |  BN  | Lr schd | Inf time (fps) | box AP | Download |
-| :-------------: | :-----: | :-----: | :------------: | :----: | :------: |
+| :-------------: | :-------: | :-----: | :------------: | :----: | :------: |
 |    Faster-R-50-FPN     |  BN  |   1x    |    18.0    | 37.5   | [model](http://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth) |
 |    Faster-R-50-FPN     |  BNET-3  |   1x    |    17.1    | 39.5   | [model](https://drive.google.com/file/d/1htx41H6OgVpWEIeYfueSXv1nP5GSWJCu/view?usp=sharing) |
 |    Faster-R-50-FPN     |  BNET-5  |   1x    |    16.3    | 40.1   | [model](https://drive.google.com/file/d/1z8Y1z7IY6a7HF8begjooNtcpYWlmkcc6/view?usp=sharing) |
