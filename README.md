@@ -37,7 +37,7 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 
 ## Citation
 
-If you use this toolbox or benchmark in your research, please cite this project.
+If you use BNET in your research, please cite this project.
 
 ```
 @article{BNET,
