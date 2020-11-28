@@ -14,6 +14,6 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 ## Selected Results
 
 |    Backbone     |  BN  | Lr schd | Inf time (fps) | box AP | Download |
-| :-------------: | :-----: | :-----: | :------: | :------------: | :----: | :------: |
+| :-------------: | :-----: | :-----: | :------------: | :----: | :------: |
 |    R-50-FPN     |  BNET-3  |   1x    |    18.0    | 39.5   | [model](https://drive.google.com/file/d/1htx41H6OgVpWEIeYfueSXv1nP5GSWJCu/view?usp=sharing) |
 
