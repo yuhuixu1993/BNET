@@ -7,7 +7,7 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 - 11.26.2020: The code of Image Classification and Object Detection are released.
 
 ## Models
-Classification:[[Google Drive]](https://drive.google.com/drive/folders/1lwyQgoKA-hf1EguT7zh8BgriM-B1LWQm?usp=sharing)
+Classification:[[Google Drive]](https://drive.google.com/drive/folders/1lwyQgoKA-hf1EguT7zh8BgriM-B1LWQm?usp=sharing)\\
 Detection:[[Google Drive]](https://drive.google.com/drive/folders/1PgHChbHq6uI2RafFNhcWVHAMDOjua3QE?usp=sharing)
 
 
