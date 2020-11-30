@@ -40,8 +40,8 @@ This repository provides the PyTorch implementation of [Batch Normalization with
 |    Mask-R-50-FPN     |  BN  |   1x    |    38.2    | 34.7  | [model](http://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r50_fpn_1x_coco/mask_rcnn_r50_fpn_1x_coco_20200205-d4b0c5d6.pth) |
 |    Mask-R-50-FPN     |  BNET-3  |   1x    |    40.2    | 36.4  | [model](https://drive.google.com/file/d/1I3jCTldcCgQv-POjDXzvbzb2AFrdRhz4/view?usp=sharing) |
 |    Mask-R-50-FPN     |  BNET-5  |   1x    |    40.8    | 36.7   | [model](https://drive.google.com/file/d/1MzL6njoaQeDar9hT8NiQ80Ql9b2pBIKK/view?usp=sharing) |
-|    Mask-R-101-FPN     |  BN  |   1x    |   42.2    | 37.8   | [model](http://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r101_fpn_1x_coco/mask_rcnn_r101_fpn_1x_coco_20200204-1efe0ed5.pth) |
-|    Mask-R-101-FPN     |  BNET-3  |   1x    |   40.0    | 36.1   | [model](https://drive.google.com/file/d/16bcWQVGKat9IIrj3odQiKM2JjSOlglET/view?usp=sharing) |
+|    Mask-R-101-FPN     |  BN  |   1x    |   40.0   | 37.8   | [model](http://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r101_fpn_1x_coco/mask_rcnn_r101_fpn_1x_coco_20200204-1efe0ed5.pth) |
+|    Mask-R-101-FPN     |  BNET-3  |   1x    |   42.2    | 36.1   | [model](https://drive.google.com/file/d/16bcWQVGKat9IIrj3odQiKM2JjSOlglET/view?usp=sharing) |
 |    Mask-R-101-FPN     |  BNET-5  |   1x    |   42.5    | 37.9   | [model](https://drive.google.com/file/d/1jpGeV48jhLLjJSPPLniVvaylz_IxsNBF/view?usp=sharing) |
 
 ## Citation
