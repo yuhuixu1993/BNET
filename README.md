@@ -1,6 +1,6 @@
 # Batch Normalization with Enhanced Linear Transformation
 
-This repository provides the PyTorch implementation of [Batch Normalization with Enhanced Linear Transformation](https://github.com/yuhuixu1993/BNET/edit/main/README.md)
+This repository provides the PyTorch implementation of [Batch Normalization with Enhanced Linear Transformation](https://arxiv.org/abs/2011.14150)
 
 <div align="center">
   <img src="BNET.png" width="600"/>
@@ -53,7 +53,7 @@ If you use BNET in your research, please cite this project.
   title   = {Batch Normalization with Enhanced Linear Normalization},
   author  = {Xu, Yuhui and Xie, Lingxi and Xie, Cihang and Mei, Jieru and
              Qiao, Siyuan and Wei, Shen and Xiong, Hongkai and Alan, Yuille},
-  journal= {wait},
+  journal= {arXiv preprint arXiv:2011.14150},
   year={2020}
 }
 ```
